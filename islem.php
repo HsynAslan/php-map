@@ -3,30 +3,32 @@
 
 require_once 'baglan.php';
 
-    if(isset($_POST['post-sehir-button'])){
-        $form_ilk_sehir = intval($_POST['sehir-1']); 
-        $form_ikinci_sehir = intval($_POST['sehir-2']); 
-        echo "1.Şehir : ".$form_ilk_sehir . "<br>"; 
-        
-        echo "2.Şehir : ".$form_ikinci_sehir;
+if(isset($_GET['sehir-1']) && isset($_GET['sehir-2'])){
 
-  $birinci_sehir_id=$db->prepare("SELECT * from sehir_bilgileri WHERE sehir_id= $form_ilk_sehir");
-  $birinci_sehir_id->execute();
-  $birinci_sehir_id_cek = $birinci_sehir_id->fetch(PDO::FETCH_ASSOC);
-  echo "<pre> database den gelen id : -> ";
-  print_r($birinci_sehir_id_cek['sehir_id']);
-  echo "<pre>";
+    $sehir_bir = $_GET['sehir-1'];
+    echo "1.sehir: " . $sehir_bir . "<br>";
 
-  $ikinci_sehir_id=$db->prepare("SELECT * from sehir_bilgileri WHERE sehir_id= $form_ikinci_sehir");
-  $ikinci_sehir_id->execute();
-  $ikinci_sehir_id_cek = $ikinci_sehir_id->fetch(PDO::FETCH_ASSOC);
-  echo "<pre> database den gelen id : -> ";
-  print_r($ikinci_sehir_id_cek['sehir_id']);
-  echo "<pre>";
+    $sehir_iki = $_GET['sehir-2'];
+echo "2.sehir: " . $sehir_iki . "<br>";
 
-  echo "mesafe: " . calculateKusUcusuMesafe($birinci_sehir_id_cek, $ikinci_sehir_id_cek);
+ 
 
-         
+$birinci_sehir_id=$db->prepare("SELECT * from sehir_bilgileri WHERE sehir_id= $sehir_bir");
+$birinci_sehir_id->execute();
+$birinci_sehir_id_cek = $birinci_sehir_id->fetch(PDO::FETCH_ASSOC);
+echo "<pre> database den gelen id : -> ";
+print_r($birinci_sehir_id_cek['sehir_id']);
+echo "<pre>";
+
+$ikinci_sehir_id=$db->prepare("SELECT * from sehir_bilgileri WHERE sehir_id= $sehir_iki");
+$ikinci_sehir_id->execute();
+$ikinci_sehir_id_cek = $ikinci_sehir_id->fetch(PDO::FETCH_ASSOC);
+echo "<pre> database den gelen id : -> ";
+print_r($ikinci_sehir_id_cek['sehir_id']);
+echo "<pre>";
+
+echo "mesafe: " . calculateKusUcusuMesafe($birinci_sehir_id_cek, $ikinci_sehir_id_cek);
+
 
        
 

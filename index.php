@@ -17,7 +17,7 @@ require_once 'baglan.php';
     <link rel="stylesheet" href="style.css" />
   </head>
   <div class="container mt-5">
-  <form action="islem.php" method="POST">
+  <form action="islem.php" method="GET">
     <div class="sehirler">
       <div class="sehir row mb-3">
         <p class="sehir-text col-2">Source :</p>
